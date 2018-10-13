@@ -11,7 +11,10 @@ gl.clear(gl.COLOR_BUFFER_BIT);
 const vertShaderSource = `
     attribute vec2 position;
 
+    varying vec2 texCoords;
+
     void main() {
+        texCoords = (position + 1.0) / 2.0;
         gl_Position = vec4(position, 0, 1.0);
     }
 `;
@@ -19,8 +22,10 @@ const vertShaderSource = `
 const fragShaderSource = `
     precision highp float;
 
-    void main() {
-        gl_FragColor = vec4(0.9, 0.1, 1.0, 1.0);
+    varying vec2 texCoords;
+
+    void main() {        
+        gl_FragColor = vec4(texCoords, 1.0, 1.0);
     }
 `;
 

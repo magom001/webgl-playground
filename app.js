@@ -36,8 +36,18 @@ image.onload = function () {
 
 
 
-    void main() {        
-        gl_FragColor = texture2D(textureSampler, texCoords);
+    void main() {     
+        float warmth = 0.0;
+        float brightness = -0.75;
+
+        vec4 color = texture2D(textureSampler, texCoords);
+
+        color.r += warmth;
+        color.b -= warmth;
+
+        color.rgb += brightness;
+                
+        gl_FragColor = color;
     }
 `;
 
